@@ -1,0 +1,57 @@
+{
+  "name": "Angular Dev Environment",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:20",
+
+  // 1. 权限设置：避免容器内使用 root 导致你主机上的文件权限错乱
+  "remoteUser": "node",
+
+  // 2. Features：官方提供的模块化安装工具，免去了写一堆 Dockerfile/bash 的烦恼
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true // 强制 Zsh 为默认 Shell
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {} // 可选：装一个 GitHub CLI 方便提 PR
+  },
+
+  // 3. 端口转发与行为控制
+  "forwardPorts": [4200],
+  "portsAttributes": {
+    "4200": {
+      "label": "Angular 本地服务", // 在 VS Code 端口面板显示的优雅名称
+      "onAutoForward": "openPreview", // 启动后自动在 VS Code 侧边栏打开预览 (也可选 "openBrowser" 在外部浏览器打开)
+      "requireLocalPort": true
+    }
+  },
+
+  // 4. 生命周期管理：核心逻辑在此
+  // corepack enable 用于激活 Node20 自带的 pnpm
+  "postCreateCommand": "sudo npm install -g @angular/cli && sudo corepack enable && pnpm config set store-dir /home/node/.local/share/pnpm/store/v3 && pnpm install",
+
+  // 5. 自动启动服务（当容器启动完成后执行）
+  // 注意：Angular 在容器内必须绑定 0.0.0.0 才能被宿主机访问！
+  "postAttachCommand": "pnpm start --host 0.0.0.0",
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "git.enableCommitSigning": true,
+        // 调整一些容器内常见的文件监视器设置，防止占用过高导致卡顿
+        "files.watcherExclude": {
+          "**/.git/objects/**": true,
+          "**/node_modules/**": true
+        }
+      },
+      "extensions": [
+        "Angular.ng-template",
+        "cipchk.ng-zorro-vscode",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "EditorConfig.EditorConfig",
+        "formulahendry.code-runner",
+        "christian-kohler.path-intellisense",
+        "eamodio.gitlens"
+      ]
+    }
+  }
+}

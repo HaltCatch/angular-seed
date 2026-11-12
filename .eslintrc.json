@@ -1,0 +1,83 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*", "dist/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "plugins": ["header"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "prettier/prettier": [
+          "error",
+          {
+            "tabWidth": 2,
+            "useTabs": false,
+            "singleQuote": false,
+            "semi": true,
+            "bracketSpacing": true,
+            "arrowParens": "avoid",
+            "trailingComma": "es5",
+            "bracketSameLine": true,
+            "printWidth": 80
+          }
+        ],
+        "header/header": [
+          2,
+          "block",
+          [
+            "*",
+            " * Angular16 基础项目",
+            " * 参考配置 https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE",
+            " "
+          ],
+          2
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@typescript-eslint/no-explicit-any": "error"
+      }
+    },
+    {
+      "files": ["**/demo/*.ts", "*.spec.ts", "**/dist/*.ts"],
+      "rules": {
+        "header/header": "off"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility"
+      ],
+      "rules": {}
+    },
+    {
+      "files": ["*.html"],
+      "excludedFiles": ["*inline-template-*.component.html"],
+      "extends": ["plugin:prettier/recommended"],
+      "rules": {
+        "prettier/prettier": ["error", { "parser": "angular" }]
+      }
+    }
+  ]
+}

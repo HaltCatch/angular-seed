@@ -1,0 +1,20 @@
+{
+  // 基础编辑器规范
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+
+  // ESLint & Prettier 格式化接管
+  "eslint.format.enable": true,
+  "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[less]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[css]": { "editor.defaultFormatter": "dbaeumer.vscode-eslint" },
+  "[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+
+  // 调试与文件关联
+  "debug.onTaskErrors": "debugAnyway",
+  "workbench.editorAssociations": {
+    "{git,gitlens}:/**/*.{md,csv,svg}": "default"
+  }
+}

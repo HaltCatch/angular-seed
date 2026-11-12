@@ -1,0 +1,6 @@
+# 强制所有文件在提交和检出时都使用 LF (Linux 风格)
+* text=auto eol=lf
+
+# 针对 Windows 脚本文件保持 CRLF (可选，但在 Angular 项目中通常不需要)
+*.cmd text eol=crlf
+*.bat text eol=crlf

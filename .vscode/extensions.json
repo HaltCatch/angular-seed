@@ -1,0 +1,16 @@
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "Angular.ng-template",
+    "formulahendry.code-runner",
+    "EditorConfig.EditorConfig",
+    "eamodio.gitlens",
+    "ritwickdey.LiveServer",
+    "PKief.material-icon-theme",
+    "cipchk.ng-zorro-vscode",
+    "tonybaloney.vscode-pets",
+    "christian-kohler.path-intellisense"
+  ]
+}
